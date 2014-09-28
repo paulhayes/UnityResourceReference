@@ -30,8 +30,14 @@ public class ResourceRef : ScriptableObject
 	
 	public void OnEnable()
 	{
-		hideFlags = HideFlags.HideAndDontSave;
+		//hideFlags = HideFlags.HideAndDontSave;
+		
     }
+    
+    public override string ToString ()
+	{
+		return string.Format ("[ResourceRef](path:{0},GUID:{1})",path,GUID);
+	}
     
 }
 
