@@ -14,6 +14,7 @@ public class ResourceRefDrawer : PropertyDrawer
 	
 	public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
 	{
+		    
 		topLineHeight = base.GetPropertyHeight(property, label);
 		if( nonResourceAsset ){
 			return topLineHeight + bottomLineHeight;

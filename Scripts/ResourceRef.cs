@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 [System.Serializable]
@@ -6,11 +6,15 @@ public class ResourceRef : ScriptableObject
 {
 	public string path;
 	public string GUID;
-	
+    	private Object cache;
 	public T Get<T>() where T : Object
 	{		 
 		//Debug.Log("Runtime -> Loading Path:"+path+" GUID:"+GUID);
-		return (T)Resources.Load(path,typeof(T));
+	    if (cache == null)
+	    {
+	        Load<T>();
+	    }
+	    return cache as T;
 	}
 	
 	public ResourceRequest GetAsync<T>()
@@ -20,19 +24,27 @@ public class ResourceRef : ScriptableObject
 	
 	public void Unload()
 	{
-		Resources.UnloadAsset( Resources.Load(path) );
+	    	if (cache != null)
+	    	{
+            		Resources.UnloadAsset(cache);
+        	}
+
 	}
-	
-	public virtual System.Type ResourceType()
+
+    	public void Load<T>() where T : Object
+    	{
+        	cache = (T)Resources.Load(path, typeof(T));
+    	}
+
+    	public virtual System.Type ResourceType()
 	{
 		return typeof(Object);
 	}
 	
 	public void OnEnable()
 	{
-		//hideFlags = HideFlags.HideAndDontSave;
-		
-    }
+		hideFlags = HideFlags.HideAndDontSave;
+	}
     
     public override string ToString ()
 	{

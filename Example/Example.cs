@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Example : MonoBehaviour {
 
-	public ResourceAsset resourceAsset;
-
-	//public ResourceRef prefabResourceRef;
-	//GameObject prefab;
-	//public ExampleScriptableObject obj;
-
+	public ResourceGameObject resourceAsset;
+	public ResourceAsset<ExampleScriptableObject> scritableObjectExample;
+	public ResourceAudioClip audioClipResource;
+	public ResourceTexture textureResource;
+	public List<ResourceGameObject> resourceList;
+    
 	void Start () 
 	{
 		
@@ -16,12 +17,11 @@ public class Example : MonoBehaviour {
 	
 	void Update () 
 	{
+		if( Input.GetMouseButtonDown(0) ){
+			Instantiate( resourceAsset.Get<GameObject>(), transform.position, Quaternion.identity );            
+		}
 		
-	}
-	
-	void OnMouseDown()
-	{
-		//prefab = prefabResourceRef.Get<GameObject>();
-		//Instantiate( prefab, transform.position, Quaternion.identity );
+		
+		Debug.Log ( Resources.FindObjectsOfTypeAll<GameObject>().Length );
 	}
 }
