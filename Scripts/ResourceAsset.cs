@@ -20,7 +20,16 @@ public class ResourceAsset
     {
 		cachedObject  = Resources.Load<T>(path);		
     }
-    
+
+    public void Unload()
+    {
+        if (cachedObject != null)
+        {
+            cachedObject = null;
+            Resources.UnloadAsset(cachedObject);
+        }
+    }
+
     public static System.Type AssetType()
     {
     	return typeof(Object);
