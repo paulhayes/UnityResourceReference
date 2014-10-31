@@ -25,8 +25,8 @@ public class ResourceAsset
     {
         if (cachedObject != null)
         {
-            cachedObject = null;
-            Resources.UnloadAsset(cachedObject);
+			Resources.UnloadAsset(cachedObject);
+			cachedObject = null;
         }
     }
 
