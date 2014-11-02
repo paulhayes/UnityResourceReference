@@ -3,6 +3,8 @@ UnityResourceReference
 
 Allows you to use the Unity Inspector panel to link non-memory resident references of assets located in Resources folders.
 
+![](https://raw.githubusercontent.com/paulhayes/UnityResourceReference/master/screen.png)
+
 ###Classes
 
 * ResourceTexture
